@@ -6,7 +6,6 @@ const datetimeInput = document.getElementById('datetime-picker');
 
 const todayDate = new Date();
 const todayMs = todayDate.getTime();
-console.log(todayMs);
 
 const daysLeft = document.querySelector('span[data-days]');
 const hoursLeft = document.querySelector('span[data-hours]');
@@ -19,18 +18,17 @@ const flatpickr = flatpickr('#datetime-picker', {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
     if (selectedDates[0] < todayDate) {
       window.alert('Please choose a date in the future');
       startBtn.disabled = true;
     } else {
       startBtn.disabled = false;
-      const inputDate = selectedDates[0];
-      inputMs = inputDate.getTime();
-      console.log(inputMs);
     }
   },
 });
+
+inputMs = flatpickr.selectedDates[0].getTime();
+console.log(inputMs);
 
 startBtn.addEventListener('click', () => {
   setInterval(() => {
