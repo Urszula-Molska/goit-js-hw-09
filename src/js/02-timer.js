@@ -27,16 +27,15 @@ const flatpickr = flatpickr('#datetime-picker', {
   },
 });
 
-inputMs = flatpickr.selectedDates[0].getTime();
+const inputMs = flatpickr.selectedDates[0].getTime();
 console.log(inputMs);
 
 startBtn.addEventListener('click', () => {
   setInterval(() => {
-    const ms = inputMs - todayMs;
-    console.log(ms);
-    convertMs(ms);
-    const timeLeft = convertMs(ms);
-    console.log(timeLeft);
+    const miliseconds = inputMs - todayMs;
+    console.log(miliseconds);
+    convertMs(miliseconds);
+    const timeLeft = convertMs(miliseconds);
     daysLeft.innerHTML = timeLeft.days;
     hoursLeft.innerHTML = timeLeft.hours;
     minutesLeft.innerHTML = timeLeft.minutes;
