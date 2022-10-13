@@ -32,10 +32,11 @@ const flatpickr = flatpickr('#datetime-picker', {
 
 startBtn.addEventListener('click', () => {
   setInterval(() => {
-    const miliseconds = inputMs - todayMs;
+    const nowDate = new Date().getTime();
+    let ms = inputMs - nowDate;
     //console.log(miliseconds);
-    convertMs(miliseconds);
-    const timeLeft = convertMs(miliseconds);
+    convertMs(ms);
+    const timeLeft = convertMs(ms);
     console.log(timeLeft);
     daysLeft.innerHTML = timeLeft.days;
     hoursLeft.innerHTML = timeLeft.hours;
