@@ -4,8 +4,10 @@ startBtn = document.querySelector('button[data-start]');
 
 const datetimeInput = document.getElementById('datetime-picker');
 
-//datetimeInput.addEventListener('input', flatpickr);
-const todaysDate = new Date();
+const todayDate = new Date();
+const todayMs = todayDate.getTime();
+console.log(todayMs);
+
 const daysLeft = document.querySelector('span[data-days]');
 const hoursLeft = document.querySelector('span[data-hours]');
 const minutesLeft = document.querySelector('span[data-minutes]');
@@ -18,29 +20,34 @@ const flatpickr = flatpickr('#datetime-picker', {
   minuteIncrement: 1,
   onClose(selectedDates) {
     console.log(selectedDates[0]);
-    if (selectedDates[0] < todaysDate) {
+    if (selectedDates[0] < todayDate) {
       window.alert('Please choose a date in the future');
       startBtn.disabled = true;
     } else {
       startBtn.disabled = false;
-      const ms = selectedDates[0] - todaysDate;
-      convertMs(ms);
-      //console.log(convertMs(ms));
-      const timeLeft = convertMs(ms);
-      console.log(timeLeft);
-      console.log(timeLeft.days);
+      const inputDate = selectedDates[0];
+      inputMs = inputDate.getTime();
+      console.log(inputMs);
     }
   },
 });
 
-//startBtn.addEventListener('click', () => {
-//const ms = datetimeInput.value - todaysDate;
-//console.log(ms);
-
-//setInterval(() => {
+startBtn.addEventListener('click', () => {
+  setInterval(() => {
+    const ms = inputMs - todayMs;
+    console.log(ms);
+    convertMs(ms);
+    const timeLeft = convertMs(ms);
+    console.log(timeLeft);
+    daysLeft.innerHTML = timeLeft.days;
+    hoursLeft.innerHTML = timeLeft.hours;
+    minutesLeft.innerHTML = timeLeft.minutes;
+    secondsLeft.innerHTML = timeLeft.seconds;
+  }, 1000);
+});
 
 function convertMs(ms) {
-  console.log(ms);
+  //console.log(ms);
   // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
