@@ -12,6 +12,8 @@ const hoursLeft = document.querySelector('span[data-hours]');
 const minutesLeft = document.querySelector('span[data-minutes]');
 const secondsLeft = document.querySelector('span[data-seconds]');
 
+let inputMs;
+
 const flatpickr = flatpickr('#datetime-picker', {
   enableTime: true,
   time_24hr: true,
@@ -23,12 +25,10 @@ const flatpickr = flatpickr('#datetime-picker', {
       startBtn.disabled = true;
     } else {
       startBtn.disabled = false;
+      inputMs = selectedDates[0].getTime();
     }
   },
 });
-
-const inputMs = flatpickr.selectedDates[0].getTime();
-console.log(inputMs);
 
 startBtn.addEventListener('click', () => {
   setInterval(() => {
