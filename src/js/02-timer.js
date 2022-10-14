@@ -31,18 +31,21 @@ const flatpickr = flatpickr('#datetime-picker', {
 });
 
 startBtn.addEventListener('click', () => {
-  setInterval(() => {
-    const nowDate = new Date().getTime();
-    let ms = inputMs - nowDate;
-    convertMs(ms);
-    const timeLeft = convertMs(ms);
-    console.log(timeLeft);
-    //const counterDays = timeLeft.days;
-    daysLeft.innerHTML = addLeadingZero(timeLeft.days);
-    hoursLeft.innerHTML = addLeadingZero(timeLeft.hours);
-    minutesLeft.innerHTML = addLeadingZero(timeLeft.minutes);
-    secondsLeft.innerHTML = addLeadingZero(timeLeft.seconds);
-  }, 1000);
+  if (inputMs >= todayMs) {
+    timerId = setInterval(() => {
+      const nowDate = new Date().getTime();
+      let ms = inputMs - nowDate;
+      convertMs(ms);
+      const timeLeft = convertMs(ms);
+      console.log(timeLeft);
+      daysLeft.innerHTML = addLeadingZero(timeLeft.days);
+      hoursLeft.innerHTML = addLeadingZero(timeLeft.hours);
+      minutesLeft.innerHTML = addLeadingZero(timeLeft.minutes);
+      secondsLeft.innerHTML = addLeadingZero(timeLeft.seconds);
+    }, 1000);
+  } else {
+    clearInterval(timerId);
+  }
 });
 
 function convertMs(ms) {
@@ -71,8 +74,3 @@ function addLeadingZero(value) {
     return value.toString().padStart(2, '0');
   } else return value;
 }
-
-/*daysLeft.innerHTML = timeLeft.days.padStart(2, '0');
-hoursLeft.innerHTML = timeLeft.hours.padStart(2, '0');
-minutesLeft.innerHTML = timeLeft.minutes.padStart(2, '0');
-secondsLeft.innerHTML = timeLeft.seconds.padStart(2, '0');*/
