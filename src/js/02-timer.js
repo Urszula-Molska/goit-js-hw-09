@@ -13,7 +13,7 @@ const minutesLeft = document.querySelector('span[data-minutes]');
 const secondsLeft = document.querySelector('span[data-seconds]');
 
 let inputMs;
-
+startBtn.disabled = true;
 const flatpickr = flatpickr('#datetime-picker', {
   enableTime: true,
   time_24hr: true,
@@ -23,7 +23,6 @@ const flatpickr = flatpickr('#datetime-picker', {
     inputMs = selectedDates[0].getTime();
     if (inputMs <= todayMs) {
       window.alert('Please choose a date in the future');
-      startBtn.disabled = true;
     } else {
       startBtn.disabled = false;
     }
@@ -31,10 +30,11 @@ const flatpickr = flatpickr('#datetime-picker', {
 });
 
 startBtn.addEventListener('click', () => {
-  if (inputMs >= todayMs) {
-    timerId = setInterval(() => {
-      const nowDate = new Date().getTime();
-      let ms = inputMs - nowDate;
+  timerId = setInterval(() => {
+    startBtn.disabled = true;
+    const nowDate = new Date().getTime();
+    let ms = inputMs - nowDate;
+    if (ms > 0) {
       convertMs(ms);
       const timeLeft = convertMs(ms);
       console.log(timeLeft);
@@ -42,10 +42,11 @@ startBtn.addEventListener('click', () => {
       hoursLeft.innerHTML = addLeadingZero(timeLeft.hours);
       minutesLeft.innerHTML = addLeadingZero(timeLeft.minutes);
       secondsLeft.innerHTML = addLeadingZero(timeLeft.seconds);
-    }, 1000);
-  } else {
-    clearInterval(timerId);
-  }
+    }
+    if ((ms = 0)) {
+      clearInterval(timerId);
+    }
+  }, 1000);
 });
 
 function convertMs(ms) {
