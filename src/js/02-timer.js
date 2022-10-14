@@ -34,11 +34,12 @@ startBtn.addEventListener('click', () => {
   setInterval(() => {
     const nowDate = new Date().getTime();
     let ms = inputMs - nowDate;
-    //console.log(miliseconds);
+    console.log(miliseconds);
     convertMs(ms);
     const timeLeft = convertMs(ms);
     console.log(timeLeft);
-    daysLeft.innerHTML = timeLeft.days;
+    const counterDays = timeLeft.days;
+    daysLeft.innerHTML = addLeadingZero(counterDays);
     hoursLeft.innerHTML = timeLeft.hours;
     minutesLeft.innerHTML = timeLeft.minutes;
     secondsLeft.innerHTML = timeLeft.seconds;
@@ -65,3 +66,13 @@ function convertMs(ms) {
 
   return { days, hours, minutes, seconds };
 }
+
+function addLeadingZero(value) {
+  return value.padStart(2, '0');
+}
+console.log(addLeadingZero(counterDays));
+
+/*daysLeft.innerHTML = timeLeft.days.padStart(2, '0');
+hoursLeft.innerHTML = timeLeft.hours.padStart(2, '0');
+minutesLeft.innerHTML = timeLeft.minutes.padStart(2, '0');
+secondsLeft.innerHTML = timeLeft.seconds.padStart(2, '0');*/
