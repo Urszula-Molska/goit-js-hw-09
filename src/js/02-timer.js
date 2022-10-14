@@ -68,7 +68,7 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-  return value.padStart(2, '0');
+  return value.toString().padStart(2, '0');
 }
 console.log(addLeadingZero(counterDays));
 
