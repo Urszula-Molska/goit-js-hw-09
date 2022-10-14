@@ -40,6 +40,8 @@ startBtn.addEventListener('click', () => {
     console.log(timeLeft);
     const counterDays = timeLeft.days;
     daysLeft.innerHTML = addLeadingZero(counterDays);
+    console.log(counterDays);
+
     hoursLeft.innerHTML = timeLeft.hours;
     minutesLeft.innerHTML = timeLeft.minutes;
     secondsLeft.innerHTML = timeLeft.seconds;
@@ -68,7 +70,9 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-  return value.toString().padStart(2, '0');
+  if (value.toString().length < 2) {
+    return value.toString().padStart(2, '0');
+  }
 }
 console.log(addLeadingZero(counterDays));
 
