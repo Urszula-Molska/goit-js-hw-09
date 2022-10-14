@@ -34,17 +34,14 @@ startBtn.addEventListener('click', () => {
   setInterval(() => {
     const nowDate = new Date().getTime();
     let ms = inputMs - nowDate;
-    console.log(miliseconds);
     convertMs(ms);
     const timeLeft = convertMs(ms);
     console.log(timeLeft);
-    const counterDays = timeLeft.days;
-    daysLeft.innerHTML = addLeadingZero(counterDays);
-    console.log(counterDays);
-
-    hoursLeft.innerHTML = timeLeft.hours;
-    minutesLeft.innerHTML = timeLeft.minutes;
-    secondsLeft.innerHTML = timeLeft.seconds;
+    //const counterDays = timeLeft.days;
+    daysLeft.innerHTML = addLeadingZero(timeLeft.days);
+    hoursLeft.innerHTML = addLeadingZero(timeLeft.hours);
+    minutesLeft.innerHTML = addLeadingZero(timeLeft.minutes);
+    secondsLeft.innerHTML = addLeadingZero(timeLeft.seconds);
   }, 1000);
 });
 
@@ -72,9 +69,8 @@ function convertMs(ms) {
 function addLeadingZero(value) {
   if (value.toString().length < 2) {
     return value.toString().padStart(2, '0');
-  }
+  } else return value;
 }
-console.log(addLeadingZero(counterDays));
 
 /*daysLeft.innerHTML = timeLeft.days.padStart(2, '0');
 hoursLeft.innerHTML = timeLeft.hours.padStart(2, '0');
