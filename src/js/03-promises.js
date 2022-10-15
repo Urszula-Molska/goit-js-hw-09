@@ -31,7 +31,8 @@ function handleSubmit(event) {
     createPromise(i, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        console.log(delay);
+        console.log('then');
+        console.log({ position, delay });
       })
       .catch(({ position, delay }) => {
         Notify.failure(`❌Rejected promise ${position} in ${delay}ms`);
@@ -62,9 +63,9 @@ function createPromise(position, delay) {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (shouldResolve) {
-        resolve('success');
+        resolve(({ position, delay }));
       } else {
-        reject('error');
+        reject(({ position, delay }));
       }
     }, delay);
   });
