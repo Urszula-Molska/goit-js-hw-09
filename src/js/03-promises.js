@@ -1,5 +1,5 @@
-const form = document.querySelectorAll('.form');
-const button = document.querySelectorAll('button');
+const form = document.querySelector('.form');
+const button = document.querySelector('button');
 let amount;
 let step;
 let delay;
@@ -10,11 +10,10 @@ const handleSubmit = event => {
   const step = form.elements.step.value;
   const amount = form.elements.amount.value;
   console.log(delay);
+  numberOfPromises(amount);
 };
 
 form.addEventListener('submit', handleSubmit);
-/* numberOfPromises(amount);
-}
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
@@ -41,4 +40,4 @@ const numberOfPromises = amount => {
   for (let i = 0; i < amount; i++) {
     createPromise(position, delay);
   }
-};*/
+};
