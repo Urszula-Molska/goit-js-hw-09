@@ -10,6 +10,8 @@ function createPromise(position, delay) {
       const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
         resolve({ position, delay });
+        console.log('co to robi?');
+        console.log({ position, delay });
       } else {
         // Reject
         reject({ position, delay });
@@ -24,20 +26,18 @@ function handleSubmit(event) {
   let amount = Number(form.elements.amount.value);
   let step = Number(form.elements.step.value);
   let delay = Number(form.elements.delay.value);
-  console.log(timeDelay);
 
-  for (let i = 0; i < amount; i++) {
+  for (let i = 1; i <= amount; i++) {
     createPromise(i, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        console.log(timeDelay);
         console.log(delay);
       })
       .catch(({ position, delay }) => {
         Notify.failure(`❌Rejected promise ${position} in ${delay}ms`);
       });
 
-    timeDelay = step + timeDelay;
+    delay = step + delay;
   }
 }
 
