@@ -7,24 +7,19 @@ let position;
 
 const handleSubmit = event => {
   event.preventDefault();
-  const delay = form.elements.delay.value;
-  const step = form.elements.step.value;
-  const amount = form.elements.amount.value;
-  console.log(delay);
-  numberOfPromises(amount);
-};
+  //const delay = form.elements.delay.value;
+  let step = Number(form.elements.step.value);
+  let amount = Number(form.elements.amount.value);
+  let totalDelay = Number(form.elements.delay.value);
 
-const numberOfPromises = amount => {
   for (let i = 0; i < amount; i++) {
-    let position = i;
-    const delay = form.elements.delay.value;
-    createPromise(position, delay);
+    createPromise(i, totalDelay);
+    totalDelay = step + totalDelay;
   }
 };
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
-  console.log(shouldResolve);
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (shouldResolve) {
@@ -34,6 +29,7 @@ function createPromise(position, delay) {
       }
     }, delay);
   });
+
   promise
     .then(({ position, delay }) => {
       console.log(`Fulfilled promise ${position} in ${delay}ms`);
