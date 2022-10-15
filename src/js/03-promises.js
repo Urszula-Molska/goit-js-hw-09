@@ -23,11 +23,11 @@ function handleSubmit(event) {
   event.preventDefault();
   let amount = Number(form.elements.amount.value);
   let step = Number(form.elements.step.value);
-  let timeDelay = Number(form.elements.delay.value);
+  let delay = Number(form.elements.delay.value);
   console.log(timeDelay);
 
   for (let i = 0; i < amount; i++) {
-    createPromise(i, timeDelay)
+    createPromise(i, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
         console.log(timeDelay);
