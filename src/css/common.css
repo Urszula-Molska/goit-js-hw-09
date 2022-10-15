@@ -18,21 +18,30 @@ img {
 }
 
 .timer {
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
-  flex-direction: start;
-  margin-right: 20px;
+  justify-content: flex-start;
+  width: 250px;
+  height: 30px;
 }
 
 .label {
-  font-size: 8px;
+  font-size: 10px;
+  margin-top: 2px;
+  font-style: bold;
+  color: black;
 }
 
 .value {
   font-size: 16px;
+  letter-spacing: 0.5px;
+  font-style: bold;
+  color: coral;
 }
 
 .field {
-  padding-right: 10px;
-  padding-left: 5px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-right: 20px;
 }
