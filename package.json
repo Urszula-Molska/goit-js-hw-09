@@ -2,7 +2,7 @@
   "name": "urszula_molska",
   "version": "2.0.0",
   "description": "goit-js-hw-09",
-  "homepage": "https://goitacademy.github.io/parcel-project-template",
+  "homepage": "https://github.com/Urszula-Molska/goit-js-hw-09",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /parcel-project-template/"
