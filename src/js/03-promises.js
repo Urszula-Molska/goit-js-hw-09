@@ -4,9 +4,9 @@ const button = document.querySelector('button');
 form.addEventListener('submit', handleSubmit);
 
 function createPromise(position, delay) {
-  const shouldResolve = Math.random() > 0.3;
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
+      const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
         resolve('success');
       } else {
