@@ -3,6 +3,7 @@ const button = document.querySelector('button');
 let amount;
 let step;
 let delay;
+let position;
 
 const handleSubmit = event => {
   event.preventDefault();
@@ -13,7 +14,13 @@ const handleSubmit = event => {
   numberOfPromises(amount);
 };
 
-form.addEventListener('submit', handleSubmit);
+const numberOfPromises = amount => {
+  for (let i = 0; i < amount; i++) {
+    let position = i;
+    const delay = form.elements.delay.value;
+    createPromise(position, delay);
+  }
+};
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
@@ -35,9 +42,4 @@ function createPromise(position, delay) {
       console.log(`Rejected promise ${position} in ${delay}ms`);
     });
 }
-
-const numberOfPromises = amount => {
-  for (let i = 0; i < amount; i++) {
-    createPromise(position, delay);
-  }
-};
+form.addEventListener('submit', handleSubmit);
