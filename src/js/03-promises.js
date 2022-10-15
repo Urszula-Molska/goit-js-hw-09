@@ -7,14 +7,13 @@ let position;
 
 const handleSubmit = event => {
   event.preventDefault();
-  //const delay = form.elements.delay.value;
   let step = Number(form.elements.step.value);
   let amount = Number(form.elements.amount.value);
-  let totalDelay = Number(form.elements.delay.value);
+  let delay = Number(form.elements.delay.value);
 
   for (let i = 0; i < amount; i++) {
-    createPromise(i, totalDelay);
-    totalDelay = step + totalDelay;
+    createPromise(i, delay);
+    delay = step + delay;
   }
 };
 
